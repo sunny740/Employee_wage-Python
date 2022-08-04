@@ -1,5 +1,0 @@
-ERROR:root:'int' object is not callable
-Traceback (most recent call last):
-  File "E:\PyCharmInstall\Employee_Wage\Emp_Status.py", line 15, in Emp_wage_comp
-    logging.INFO("Employee is Present")
-TypeError: 'int' object is not callable
