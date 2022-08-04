@@ -1,49 +1,52 @@
-import logging
-logging.basicConfig(filename="Empwage_month.log", encoding='utf-8', level=logging.DEBUG, filemode='a')
-
 import random
+import logging
+logging.basicConfig(filename="emp_Status.log", encoding='utf-8', level=logging.DEBUG, filemode='a')
 
-def employee_wage():
+def wage_computation():
     """
-    Emp_Wage function Implemented
-    :return:
+    This function computes wage of an employee
+    :return: None
     """
+
     try:
-        empwage_working_days = 15
-        empwage_per_hour = 20
-        # IS_FULL_TIME = 1
-        # IS_PART_TIME = 2
-        # FULL_TIME_HOUR = 8
-        # PART_TIME_HOUR = 4
-        not_present = 0
-        emp_month = 0
-        emp_days = 0
+        is_absent = 0
+        # is_full_time = 1
+        # is_part_time = 2
+        # full_time_hour = 8
+        # part_time_hour = 4
+        # employee_wage_per_hour = 20
+        max_working_days = 20
+        max_working_hours = 100
+        employee_wage_for_month = 0
+        employee_working_days = 0
+        employee_working_hours = 0
 
-        while emp_days < empwage_working_days:
-            emp_status = random.randint(0, 2)
+        while employee_working_days < max_working_days and employee_working_hours <= max_working_hours:
+            employee_status = random.randint(0, 2)
 
-            if emp_status == 1:
-                # print("Employee is Present Full Day")
-                emp_wage = 8 * empwage_per_hour
-                print("Employee worked ", emp_wage)
+            if employee_status == 1:
+                employee_wage = 8 * 20
+                employee_hours = 8
+                print("Employee Worked Full Day: ", employee_wage)
 
-            elif emp_status == 2:
-                # print("Employee is Present Only Half Day")
-                emp_wage = 4 * empwage_per_hour
-                print("Employee not worked: ", emp_wage)
-
+            elif employee_status == 2:
+                employee_wage = 4 * 20
+                employee_hours = 4
+                print("Employee Worked Half Day: ", employee_wage)
             else:
-                print("Employee is not present")
-                emp_wage = not_present * empwage_per_hour
+                print("Employee is Absent")
+                employee_wage = is_absent * 20
+                employee_hours = is_absent
 
-                emp_month += emp_wage
-                emp_days += 1
+            employee_wage_for_month += employee_wage
+            employee_working_hours += employee_hours
+            employee_working_days += 1
+        print("\nNumber of Days Employee Worked: ", employee_working_days)
+        print("Number of Hours Employee Worked: ", employee_working_hours)
+        print("Employee wage for a Month: ", employee_wage_for_month)
+    except Exception as ex:
+        logging.exception(ex)
 
-        logging.info("EmpWage_Month" + str(emp_month))
 
-
-    except Exception as Ex:
-        logging.exception(Ex)
-
-if __name__ == "__main__":
-    employee_wage()
+if __name__ == '__main__':
+    wage_computation()
