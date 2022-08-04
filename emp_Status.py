@@ -1,70 +1,49 @@
+import logging
+logging.basicConfig(filename="Empwage_month.log", encoding='utf-8', level=logging.DEBUG, filemode='a')
+
 import random
 
-print("<------------Calculating EmployeeDailyWage Based on Working Hours------------>\n")
-print("<-------Switch Case------->")
-
-
-class DailyWage:
-    def __init__(self, wage_per_hour, emp_work_hour, emp_daily_wage):
-        self.wage_per_hour = wage_per_hour
-        self.emp_daily_wage = emp_daily_wage
-        self.emp_work_hour = emp_work_hour
-
+def employee_wage():
     """
-       Defining a function name calculate Wage and declaring variables
+    Emp_Wage function Implemented
+    :return:
     """
+    try:
+        empwage_working_days = 15
+        empwage_per_hour = 20
+        # IS_FULL_TIME = 1
+        # IS_PART_TIME = 2
+        # FULL_TIME_HOUR = 8
+        # PART_TIME_HOUR = 4
+        not_present = 0
+        emp_month = 0
+        emp_days = 0
 
-    # Now checking the employee is present or not
-    def present_for_full_time(self):
-        """
-        this function is set to employee working hours as 8 hrs
-        :return: emp_work_hour
-        """
-        self.emp_work_hour = 8
-        return self.emp_work_hour
+        while emp_days < empwage_working_days:
+            emp_status = random.randint(0, 2)
 
-    def present_for_part_time(self):
-        """
-        this function is set to employee working hours as 4 hrs
-        :return: emp_work_hour
-        """
-        self.emp_work_hour = 4
-        return self.emp_work_hour
+            if emp_status == 1:
+                # print("Employee is Present Full Day")
+                emp_wage = 8 * empwage_per_hour
+                print("Employee worked ", emp_wage)
 
-    def employee_absent(self):
-        """
-        this function is set to employee as absent
-        :return: emp_work_hour
-        """
-        self.emp_work_hour = 0
-        return self.emp_work_hour
+            elif emp_status == 2:
+                # print("Employee is Present Only Half Day")
+                emp_wage = 4 * empwage_per_hour
+                print("Employee not worked: ", emp_wage)
 
-    def switch_case(self):
-        """
-        implementing switch case in this function
-        :return: emp_status
-        """
-        switch = {
-            1: self.present_for_full_time(),
-            0: self.present_for_part_time()
-        }
-        return switch.get(self, "")()
+            else:
+                print("Employee is not present")
+                emp_wage = not_present * empwage_per_hour
 
-    def get_status(self):
-        self.emp_work_hour
-        check = random.randint(0, 1)
-        if not check:
-            return self.employee_absent()
-        else:
-            check = random.randint(0, 1)
-            result = self.switch_case(0)
+                emp_month += emp_wage
+                emp_days += 1
 
-    def employee_daily_wage(self):
-        print(self.emp_work_hour * self.wage_per_hour)
-        return self
+        logging.info("EmpWage_Month" + str(emp_month))
 
 
-if __name__ == '__main__':
-    calculate_wage = DailyWage(20, 0, 0)
-    calculate_wage.employee_daily_wage()
-    # Calculate the employee daily wage using random result
+    except Exception as Ex:
+        logging.exception(Ex)
+
+if __name__ == "__main__":
+    employee_wage()
