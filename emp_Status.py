@@ -1,6 +1,5 @@
 import random
 import logging
-
 logging.basicConfig(filename='empwage_display.log', filemode='a', format='%(name)s - %(levelness)s - %(message)s',
                     encoding='UTF-8', level=logging.ERROR)
 logging.warning('This is a logging ')
@@ -15,7 +14,7 @@ class Employee:
 
     def wage_computation(self):
         """
-        This function computes wage of an employee
+        This function Employee Wage
         :return: None
         """
         is_absent = 0
